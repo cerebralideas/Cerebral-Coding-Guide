@@ -787,3 +787,31 @@
 	 
 			calc(h, w); // Adds height and width
 			
+7. ## JavaScript Resources
+
+	* [http://es5.github.com/](http://es5.github.com/)
+	* [Baseline For Front End Developers](http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/)
+	* [Eloquent JavaScript](http://eloquentjavascript.net/)
+	* [JavaScript, JavaScript](http://javascriptweblog.wordpress.com/)
+	* [Adventures in JavaScript Development](http://rmurphey.com/)
+	* [Perfection Kills](http://perfectionkills.com/)
+	* [Douglas Crockford's Wrrrld Wide Web](http://www.crockford.com)
+	* [JS Assessment](https://github.com/rmurphey/js-assessment)
+	* [Leveraging Code Quality Tools by Anton Kovalyov](http://anton.kovalyov.net/slides/gothamjs/)
+	<p></p>
+ 
+8. ## Build & Deployment Process
+
+	Projects should always attempt to include some generic means by which source can be linted, tested and compressed in preparation for production use. [Grunt](https://github.com/cowboy/grunt) by Ben Alman is second to none and has officially replaced the "kits/" directory of this repo.
+
+9. ## Test Facility
+
+	Projects _must_ include some form of unit, reference, implementation or functional testing. Use case demos DO NOT QUALIFY as "tests". The following is a list of test frameworks, none of which are endorsed more than the other.
+	
+	* [QUnit](http://github.com/jquery/qunit)
+	* [Jasmine](https://github.com/pivotal/jasmine)
+	* [Vows](https://github.com/cloudhead/vows)
+	* [Mocha](https://github.com/visionmedia/mocha)
+	* [Hiro](http://hirojs.com/)
+	* [JsTestDriver](https://code.google.com/p/js-test-driver/)
+	* [Buster.js](http://busterjs.org/)

@@ -11,11 +11,11 @@ Link to this document as a statement of your project's commitment to code consis
 
 1. ## Contributors:
 
-	A. ### Current Author:
+	1. ### Current Author:
 
 		* Justin Lowery [@cerebralideas](http://twitter.com/cerebralideas), [github](https://github.com/cerebralideas)
 	
-	B. ### Authors of idiomatic.js (which inspired the JavaScript Guide):
+	2. ### Authors of idiomatic.js (which inspired the JavaScript Guide):
 	
 		* Rick Waldron [@rwaldron](http://twitter.com/rwaldron), [github](https://github.com/rwldrn)
 		* Mathias Bynens [@mathias](http://twitter.com/mathias), [github](https://github.com/mathiasbynens)
@@ -32,17 +32,17 @@ Link to this document as a statement of your project's commitment to code consis
 
 1. ## Global Rules:
 
-	A. All code should look like a single person typed it, no matter how many people contributed.
+	1. All code should look like a single person typed it, no matter how many people contributed.
 	
-	B. Write readable, understandable code. Don't code as if you are the only one who needs to understand it.
+	2. Write readable, understandable code. Don't code as if you are the only one who needs to understand it.
 	
-	C. Don't be afraid to adopt new, modern techniques, i.e. don't do things just because that's how you've always done them
+	3. Don't be afraid to adopt new, modern techniques, i.e. don't do things just because that's how you've always done them
 	
-	D. Use proven conventions and techniques
+	4. Use proven conventions and techniques
 	
-	E. Use the DRY technique as often as possible: [the DRY philosophy](http://en.wikipedia.org/wiki/Don't_repeat_yourself)
+	5. Use the DRY technique as often as possible: [the DRY philosophy](http://en.wikipedia.org/wiki/Don't_repeat_yourself)
 	
-	F. Use quality tools, resources & references
+	6. Use quality tools, resources & references
 	
 		* [jsPerf](http://jsperf.com/)
 		* [jsFiddle](http://jsfiddle.net/)
@@ -50,20 +50,20 @@ Link to this document as a statement of your project's commitment to code consis
 		* [jslint](http://jslint.org/)
 		* [csslint](http://csslint.net)
 	
-	G. Collaborate and ask for code reviews, i.e. don't develop in a bubble!
+	7. Collaborate and ask for code reviews, i.e. don't develop in a bubble!
 	
-	H. Be awesome and write beautifully clean and inspiring code.
+	8. Be awesome and write beautifully clean and inspiring code.
 	
 2. ## Table of Contents
 
-	A. HTML Guide
+	1. HTML Guide
 	
 		1. (Waiting to complete version 1.0 of document)
 	
-	B. CSS Guide
+	2. CSS Guide
 	
 		1. (Waiting to complete version 1.0 of document)
 	
-	C. JavaScript Guide
+	3. JavaScript Guide
 	
 		1. (Waiting to complete version 1.0 of document)

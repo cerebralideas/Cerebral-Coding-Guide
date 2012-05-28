@@ -3,17 +3,17 @@
 
 1. ## Whitespace Rules
 
-	A. Never mix spaces and tabs; this is the **law**!
+	1. Never mix spaces and tabs; this is the **law**!
 	
-	B. If you are starting a project, and you have a choice, **USE TABS**. I personally believe tabs give more control to those that adopt the project. Many code editors and IDE's are now allowing users to customize the width of a tab.
+	2. If you are starting a project, and you have a choice, **USE TABS**. I personally believe tabs give more control to those that adopt the project. Many code editors and IDE's are now allowing users to customize the width of a tab.
 	
 		For readability, and if your editor allows, I recommend setting your editor's tab size to be equivalent to four spaces. This will help align multi-line declarations and conditions.
 	
-	C. Never leave whitespace at line ends or within blank lines.
+	3. Never leave whitespace at line ends or within blank lines.
 	
-	D. Terminate statements with semicolons. Don't write code that depends on automatic semicolon insertion or ASI. ASI is not a syntactical feature but an error correction procedure (see [Brendan Eich's article](http://brendaneich.com/2012/04/the-infernal-semicolon/)).
+	4. Terminate statements with semicolons. Don't write code that depends on automatic semicolon insertion or ASI. ASI is not a syntactical feature but an error correction procedure (see [Brendan Eich's article](http://brendaneich.com/2012/04/the-infernal-semicolon/)).
 	
-	E. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
+	5. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
 	
 		- Enforced consistency
 		
@@ -24,13 +24,13 @@
 		- Commits and diffs that are easier to read
 		
 		
-	F. Insert line-breaks, `\n`, only *after* commas, semicolons, braces — e.g. `{}`, or comments. Again, don't use line-breaks for statement termination, use semicolons (see item D above).
+	6. Insert line-breaks, `\n`, only *after* commas, semicolons, braces — e.g. `{}`, or comments. Again, don't use line-breaks for statement termination, use semicolons (see item D above).
 	
-	G. Double line-breaks can be used to separate blocks (denoted by braces), from one another for increased readability.
+	7. Double line-breaks can be used to separate blocks (denoted by braces), from one another for increased readability.
 
 2. ## Beautiful Syntax
 
-	A. ### Parens, Braces, Linebreaks
+	1. ### Parens, Braces, Linebreaks
 	
 		1. #### Conditionals and Loops:
 		
@@ -72,7 +72,7 @@
 					// statements
 				}	
 	
-	B. ### Assignments, Declarations
+	2. ### Assignments, Declarations
 	
 		1. When **declaring variables**, combine the declaration with the comma syntax. Make sure to use a tab before each successive declaration. Using only one `var` per scope (function) promotes readability, encourages declaring all variables at the beginning of a function (see #2 below) and keeps your declaration list free of clutter (also saves a few keystrokes).
 		
@@ -115,7 +115,7 @@
 					}
 	
 	
-	C. ### Functions
+	3. ### Functions
 	
 		1. **Anonymous functions** should consist of a minimum of 3 lines — the function keyword, parens, opening brace
 		
@@ -202,7 +202,7 @@
 			
 				}
 	
-	D. ### Quotes
+	4. ### Quotes
 	
 		Use single quotes if starting a new project, and you have a choice. If adopting a project, use whatever the original developer used as there is no real difference in how JavaScript parses them. 
 		
@@ -210,11 +210,11 @@
 		
 		What **ABSOLUTELY MUST** be enforced is consistency. **Never mix quotes in the same project. Pick one style and stick with it.**
 	
-	E. ### End of Lines and Empty Lines
+	5. ### End of Lines and Empty Lines
 	
 		Whitespace can ruin diffs and make changesets impossible to read. Consider incorporating a pre-commit hook that removes end-of-line whitespace and blanks spaces on empty lines automatically.
 	
-	F. ### Type Checking (Courtesy jQuery Core Style Guidelines)
+	6. ### Type Checking (Courtesy jQuery Core Style Guidelines)
 	
 		1. Actual Types
 		
@@ -345,7 +345,7 @@
 				}
 		
 	
-	G. ### Conditional Evaluation
+	7. ### Conditional Evaluation
 	
 	
 		1. When only evaluating that an array has length.
@@ -444,7 +444,7 @@
 		
 					"1" == 1; // true
 	
-	H. ### Booleans, Truthies & Falsies
+	8. ### Booleans, Truthies & Falsies
 	
 		1. Booleans:
 		
@@ -461,7 +461,7 @@
 
 3. ## Practical Style
 
-	A. ### Practical Module
+	1. ### Practical Module
 	
 			(function( global ) {
 				var Module = (function() {
@@ -497,7 +497,7 @@
 	
 			}(this));
 
-	B. ### Practical Constructor
+	2. ### Practical Constructor
 
 			(function( global ) {
 	
@@ -529,7 +529,7 @@
 			}(this));
 
 
-	C. ### Naming
+	3. ### Naming
 	
 		You are not a human code compiler/compressor, so don't try to be one.
 		
@@ -608,11 +608,11 @@
 	
 4. ## Performance Suggestions
 
-	A. ### Repainting the Screen is Expensive
+	1. ### Repainting the Screen is Expensive
 	
 		If you are manipulating the DOM, do it all at once. One of the most expensive operations for the browser is having to repaint the screen after DOM manipulation. So, copy what you want to manipulate from the DOM, rework the elements, then reinsert when done. That forces just one repainting.
 		
-	B. ### Searching the DOM is Expensive
+	2. ### Searching the DOM is Expensive
 	
 		JS libraries are great for DOM selection and manipulation, but they can also have a large impact on performance. One of those factors is searching the DOM. Here are some suggestions using jQuery:
 		
@@ -639,7 +639,7 @@
 				classElement.find('li');
 
 
-	C. ### Use context
+	3. ### Use context
 
 		Use a cached elements to find children. If you already have a parent element cached, use it to grab its children. That way, your note searching the whole DOM.
 		
@@ -652,11 +652,11 @@
 
 		If you are using jQuery, use the `.find()` method as it's the fastest method for finding children with jQuery.
 
-	D. ### Use native Javascript when appropriate
+	4. ### Use native Javascript when appropriate
 	
 		Only call the jQuery library when native JS won't cut it. Everytime you call the `$` or use `.each()`, `.map()`, `css()` and/or `.attr()` on jQuery objects, you are forcing the browser to run through the whole jQuery library. If this is done hundreds of times, it can affect performance.
 	
-	E. ### When Binding Events to Many Elements use Delegation
+	5. ### When Binding Events to Many Elements use Delegation
 	
 		Say you have a unordered list that contains 100 list items, and you want to attach a click handler to each item in the list. The best way is to delegate the event, rather than directly binding to each item.
 		
@@ -672,7 +672,7 @@
 
 	This section will serve to illustrate ideas and concepts that should not be considered dogma, but instead exists to encourage questioning practices in an attempt to find better ways to do common JavaScript programming tasks.
 
-	A. ### Using `switch` should be used with caution 
+	1. ### Using `switch` should be used with caution 
 
 		An example switch statement
 		
@@ -723,7 +723,7 @@
 			}());
 	
 
-	B. ### Early returns promote code readability with negligible performance difference
+	2. ### Early returns promote code readability with negligible performance difference
 
 		Don't do this:
 		
@@ -749,7 +749,7 @@
 				return "quux"; // Exits here if cond fails
 			}
 			
-	C. ### Save time and effort and use the literal notation — `{}` or `[]`
+	3. ### Save time and effort and use the literal notation — `{}` or `[]`
 	
 		Don't do this:
 		
@@ -764,14 +764,14 @@
 		
 6. ## Comments
 
-	A. ### Default commenting
+	1. ### Default commenting
 	
 		Default style should be a the single line comment above the code that is subject with no space between the comment and the next line of code.
 	
 			// This is a comment
 			function () …
 	 
-	B. ### Commenting a Section
+	2. ### Commenting a Section
 	
 		Multi-line comments should be used for separating unrelated sections of code and text should be ALL-CAPS with a blank line between the comment and the next line of code.
 		
@@ -781,7 +781,7 @@
 			
 			function () …
 	 
-	C. ### End of Line Comments
+	3. ### End of Line Comments
 	
 		These are allowed if very short (~4 words)!
 	 

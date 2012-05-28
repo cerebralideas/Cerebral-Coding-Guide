@@ -2,15 +2,15 @@
 
 1. ## Whitespace Rules
 
-	A. Never mix spaces and tabs; this is the **law**!
+	1. Never mix spaces and tabs; this is the **law**!
 	
-	B. If you are starting a project, and you have a choice, **USE TABS**. I personally believe tabs give more control to those that adopt the project. Many code editors and IDE's are now allowing users to customize the width of a tab.
+	2. If you are starting a project, and you have a choice, **USE TABS**. I personally believe tabs give more control to those that adopt the project. Many code editors and IDE's are now allowing users to customize the width of a tab.
 	
 		For readability, and if your editor allows, I recommend setting your editor's tab size to be equivalent to four spaces. This will help align multi-line declarations and conditions.
 	
-	C. Never leave whitespace at line ends or within blank lines.
+	3. Never leave whitespace at line ends or within blank lines.
 	
-	D. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
+	4. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
 	
 		- Enforced consistency
 		
@@ -21,13 +21,13 @@
 		- Commits and diffs that are easier to read
 		
 		
-	F. Insert line-breaks, `\n`, after commas, semicolons, braces — e.g. `{}`, or comments.
+	5. Insert line-breaks, `\n`, after commas, semicolons, braces — e.g. `{}`, or comments.
 	
-	G. Double line-breaks can be used to separate sections, from one another for increased readability.
+	6. Double line-breaks can be used to separate sections, from one another for increased readability.
 
 2. ## Beautiful Syntax
 
-	A. ### Use multiple lines for CSS rules
+	1. ### Use multiple lines for CSS rules
 	
 		Don't do this:
 		
@@ -40,7 +40,7 @@
 				background: #000;
 			}
 			
-	B. ### Use Shorthand when possible
+	2. ### Use Shorthand when possible
 	
 		Don't do this:
 		
@@ -57,7 +57,7 @@
 				font: 700 2em/1.5em serif;
 			}
 			
-	C. ### Use numeric version for values, not names
+	3. ### Use numeric version for values, not names
 	
 		Don't do this:
 		
@@ -75,7 +75,7 @@
 				font-weight: 900;
 			}
 			
-	D. ### Shorten colors values if possible
+	4. ### Shorten colors values if possible
 	
 		Rather than this:
 		
@@ -89,7 +89,7 @@
 				color: #000;
 			}
 			
-	E. ### Wrap URL's with single quotes
+	5. ### Wrap URL's with single quotes
 	
 		Don't do this:
 		
@@ -103,7 +103,7 @@
 				background: #333 url('/images/background.png');
 			}
 			
-	F. ### Use line-breaks after commas to improve readability
+	6. ### Use line-breaks after commas to improve readability
 	
 		Don't do this:
 		
@@ -121,7 +121,7 @@
 				font-family: serif;
 			}
 			
-	G. ### NEVER USE HACKS IN CSS STYLESHEETS
+	7. ### NEVER USE HACKS IN CSS STYLESHEETS
 	
 		If you need to alter CSS for IE 8-, use Microsoft's official conditional comments.
 		
@@ -137,7 +137,7 @@
 			
 4. ## Conventions
 
-	A. ### Multi-Column Layout
+	1. ### Multi-Column Layout
 
 		1. #### Floats Should Rarely be Used, if ever
 		
@@ -184,7 +184,7 @@
 			
 			**Remember: Don't hack the stylesheet** to fix this; you may win battles but never the war. Just alter the HTML using one of the suggestions below.
 			
-			a. Comment method: It's a great method for when you have just a few elements that require zero whitespace. If you are doing it for more than two or three elements, then use a different method. Make sure to leave a note as to why the comment is there.
+			1. Comment method: It's a great method for when you have just a few elements that require zero whitespace. If you are doing it for more than two or three elements, then use a different method. Make sure to leave a note as to why the comment is there.
 			
 					<body>
 						<header>Header Stuff</header>
@@ -192,14 +192,14 @@
 					 --><aside>Third</aside>
 					</body>
 					
-			b. Don't leave whitespace: This is good for small, simple elements that need seamless backgrounds. Repeating small elements that don't have any internal HTML elements work well with this method. Again, make sure to comment why you are doing this.
+			2. Don't leave whitespace: This is good for small, simple elements that need seamless backgrounds. Repeating small elements that don't have any internal HTML elements work well with this method. Again, make sure to comment why you are doing this.
 			
 					<ul class="nav">
 						<!-- Leave all inline -->
 						<li>Design</li><li>Development</li><li>Launch</li><li>Support</li>
 					</ul>
 					
-			c. Misc Method: This works well if you have internal HTML elements within the `inline-block` element, like an anchor tag. Like the above, leave a note for others.
+			3. Misc Method: This works well if you have internal HTML elements within the `inline-block` element, like an anchor tag. Like the above, leave a note for others.
 			
 					<ul>
 						<!-- Don't add space or line-break between li's -->
@@ -214,7 +214,7 @@
 		
 3. ## Comments
 
-	A. ### Commenting a Main Section
+	1. ### Commenting a Main Section
 	
 		Use multi-line style separating unrelated sections of code and text should be ALL-CAPS with a double line-break afterwards. The next line of code should be nested after comment.
 		
@@ -224,7 +224,7 @@
 			
 				footer …
 	 
-	B. ### Commenting Subsections
+	2. ### Commenting Subsections
 	
 		Default style should be a the single line comment above the code that is subject. Comments for subsections should be capitalized with a double line-break and indentation.
 			
@@ -234,7 +234,7 @@
 					color: #000;
 				}
 					
-	C. ### Commenting for Communicaing Intent
+	3. ### Commenting for Communicaing Intent
 	
 		This comment should be all lowercase, single line and single line-break with no indentation.
 			
@@ -243,7 +243,7 @@
 				color: #000;
 			}
 	 
-	C. ### End of Line Comments (Very Rarely Needed)
+	4. ### End of Line Comments (Very Rarely Needed)
 	
 		These are allowed if very short (~4 words)!
 	 
@@ -253,7 +253,7 @@
 			
 4. ## Indentation
 
-	A. ### Indent for every section and subsection
+	1. ### Indent for every section and subsection
 	
 		To increase readability, it is recommended to indent each section and subsections nesting the code to designate relationships. Start the indentation after the comment, so that the comment "sticks out" to the left helping the eye catch the change.
 		

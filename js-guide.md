@@ -5,11 +5,11 @@
 
 	A. Never mix spaces and tabs; this is the **law**!
 	
-	B. If you are starting a project, and you have a choice, **USE TABS**.
+	B. If you are starting a project, and you have a choice, **USE TABS**. I personally believe tabs give more control to those that adopt the project. Many code editors and IDE's are now allowing users to customize the width of a tab.
 	
-		*For readability and if your editor allows, I recommend setting your editor's tab size to be equivalent to four spaces. This will help align multi-line declarations and conditions.*
+		For readability, and if your editor allows, I recommend setting your editor's tab size to be equivalent to four spaces. This will help align multi-line declarations and conditions.
 	
-	C. Never leave whitespace at line ends.
+	C. Never leave whitespace at line ends or within blank lines.
 	
 	D. Terminate statements with semicolons. Don't write code that depends on automatic semicolon insertion or ASI. ASI is not a syntactical feature but an error correction procedure (see [Brendan Eich's article](http://brendaneich.com/2012/04/the-infernal-semicolon/)).
 	
@@ -495,7 +495,7 @@
 				// expose our module to the global object
 				global.Module = Module;
 	
-			})( this );
+			}(this));
 
 	B. ### Practical Constructor
 
@@ -526,7 +526,7 @@
 				// expose our constructor to the global object
 				global.ctor = ctor;
 	
-			})( this );
+			}(this));
 
 
 	C. ### Naming
@@ -597,9 +597,78 @@
 			methodNamesLikeThis;
 			
 			SYMBOLIC_CONSTANTS_LIKE_THIS;
-
+			
+		Don't use the dollar sign, `$`, or the underscore, `_`, unless it's meaning is obvious and well explained. An example would be when you cached DOM elements and you don't always use jQuery to select the element. The dollar sign could differentiate between jQuery elements and regular JS elements.
+		
+		Example:
+		
+			var $element = $('#myElement'),
+				element = document.getElementById('myElement');
+		
 	
-4. ## Misc
+4. ## Performance Suggestions
+
+	A. ### Repainting the Screen is Expensive
+	
+		If you are manipulating the DOM, do it all at once. One of the most expensive operations for the browser is having to repaint the screen after DOM manipulation. So, copy what you want to manipulate from the DOM, rework the elements, then reinsert when done. That forces just one repainting.
+		
+	B. ### Searching the DOM is Expensive
+	
+		JS libraries are great for DOM selection and manipulation, but they can also have a large impact on performance. One of those factors is searching the DOM. Here are some suggestions using jQuery:
+		
+		1. Cache anything you use more than once.
+		
+				var cachedEl = $('#myElement');
+				
+		2. Use ID's as much as you can. Searching for classes, or special selectors is not performant.
+	
+		3. Use context and avoid relying on CSS selectors. This helps avoid having to search the whole DOM over and over.
+
+			Don't do this:
+			
+				$('.classElement > li');
+				
+			Do this instead:
+			
+				$('.classElement).find('li');
+				
+			Or even better:
+			
+				var classElement = $('.classElement');
+				
+				classElement.find('li');
+
+
+	C. ### Use context
+
+		Use a cached elements to find children. If you already have a parent element cached, use it to grab its children. That way, your note searching the whole DOM.
+		
+		Example:
+		
+			var parentEl = document.getElementById('myList');
+			
+			// Now that we have the parent, use it to find it's children.
+			var childEl = parentEl.getElementsByTagName('li'); 
+
+		If you are using jQuery, use the `.find()` method as it's the fastest method for finding children with jQuery.
+
+	D. ### Use native Javascript when appropriate
+	
+		Only call the jQuery library when native JS won't cut it. Everytime you call the `$` or use `.each()`, `.map()`, `css()` and/or `.attr()` on jQuery objects, you are forcing the browser to run through the whole jQuery library. If this is done hundreds of times, it can affect performance.
+	
+	E. ### When Binding Events to Many Elements use Delegation
+	
+		Say you have a unordered list that contains 100 list items, and you want to attach a click handler to each item in the list. The best way is to delegate the event, rather than directly binding to each item.
+		
+		Don't do this:
+		
+			$('li').click(function () … );
+			
+		Do this instead:
+		
+			$('ul').on('click', 'li', function () … )
+
+5. ## Misc Suggestions
 
 	This section will serve to illustrate ideas and concepts that should not be considered dogma, but instead exists to encourage questioning practices in an attempt to find better ways to do common JavaScript programming tasks.
 
@@ -607,7 +676,7 @@
 
 		An example switch statement
 		
-			switch( foo ) {
+			switch (foo) {
 				case "alpha":
 					alpha();
 					break;
@@ -630,7 +699,7 @@
 					// statements
 					// a return
 				},
-				_default: function() {
+				default: function() {
 					// statements
 					// a return
 				}
@@ -646,19 +715,19 @@
 						// statements
 						// a return
 					},
-					_default: function() {
+					default: function() {
 						// statements
 						// a return
 					}
 				};
-			})();
+			}());
 	
 
 	B. ### Early returns promote code readability with negligible performance difference
 
 		Don't do this:
 		
-			function returnLate( foo ) {
+			function returnLate(foo) {
 			
 				var ret;
 		
@@ -679,9 +748,21 @@
 				}
 				return "quux"; // Exits here if cond fails
 			}
-
-
-5. ## Comments
+			
+	C. ### Save time and effort and use the literal notation — `{}` or `[]`
+	
+		Don't do this:
+		
+			var myObject = new Object(),
+				myArray = new Array();
+			
+		Do this instead:
+		
+			var myObject = {},
+				myArray = [];
+			
+		
+6. ## Comments
 
 	A. ### Default commenting
 	
@@ -704,9 +785,5 @@
 	
 		These are allowed if very short (~4 words)!
 	 
-			calc(2, 8); // Adds arguments together
-	 		
-
-6. ## One Language Code
-
-	Programs should be written in one language, whatever that language may be, as dictated by the maintainer or maintainers.
+			calc(h, w); // Adds height and width
+			

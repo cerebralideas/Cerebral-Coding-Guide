@@ -1,19 +1,21 @@
 # Front-End Style and Conventions Guide
 
-#### This is a Living Document is an Attempt to Represent the Baseline for Front-End Development
+#### This Living Document is an Attempt to Represent the Baseline for Front-End Development
 ##### (Contribute: fork, clone, branch, commit, push, pull request.)
 
 ## Preface
 
-The following sections outline a _reasonable_ style guide and promote proven conventions to common front-end challenges for modern front-end development and are not meant to be prescriptive. The most important take-away is the **law of code consistency, the use of best practices and proven conventions**. Whatever you chose as the style for your project should be considered law. Link to this document as a statement of your project's commitment to code style consistency, readability and maintainability.
+The following documents outline a _reasonable_ style guide and promote proven conventions to common challenges for modern front-end development. The most important take-away is the **law of code consistency, the use of best practices and proven conventions**. Whatever you chose as the style for your project should be considered law. 
+
+Link to this document as a statement of your project's commitment to code consistency, readability and maintainability. Three documents will cover each basic, front-end language every front-end dev needs to know — **HTML, CSS and JavaScript**.
 
 1. ## Contributors:
 
-	A. ### Current Authors:
+	A. ### Current Author:
 
 		* Justin Lowery [@cerebralideas](http://twitter.com/cerebralideas), [github](https://github.com/cerebralideas)
 	
-	B. ### Authors of the JavaScript Guide at time of forking from idiomatic.js:
+	B. ### Authors of idiomatic.js (which inspired the JavaScript Guide):
 	
 		* Rick Waldron [@rwaldron](http://twitter.com/rwaldron), [github](https://github.com/rwldrn)
 		* Mathias Bynens [@mathias](http://twitter.com/mathias), [github](https://github.com/mathiasbynens)
@@ -32,11 +34,13 @@ The following sections outline a _reasonable_ style guide and promote proven con
 
 	A. All code should look like a single person typed it, no matter how many people contributed.
 	
-	B. Don't be afraid to adopt new, modern techniques, i.e. don't do things just because that's how you've always done them
+	B. Write readable, understandable code. Don't code as if you are the only one who needs to understand it.
+	
+	C. Don't be afraid to adopt new, modern techniques, i.e. don't do things just because that's how you've always done them
 	
 	D. Use proven conventions and techniques
 	
-	E. Use the DRY technique as often as possible: [Using the DRY philosophy](http://en.wikipedia.org/wiki/Don't_repeat_yourself)
+	E. Use the DRY technique as often as possible: [the DRY philosophy](http://en.wikipedia.org/wiki/Don't_repeat_yourself)
 	
 	F. Use quality tools, resources & references
 	
@@ -48,4 +52,18 @@ The following sections outline a _reasonable_ style guide and promote proven con
 	
 	G. Collaborate and ask for code reviews, i.e. don't develop in a bubble!
 	
+	H. Be awesome and write beautifully clean and inspiring code.
 	
+2. ## Table of Contents
+
+	A. HTML Guide
+	
+		1. (Waiting to complete version 1.0 of document)
+	
+	B. CSS Guide
+	
+		1. (Waiting to complete version 1.0 of document)
+	
+	C. JavaScript Guide
+	
+		1. (Waiting to complete version 1.0 of document)

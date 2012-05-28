@@ -141,7 +141,7 @@
 
 	A. ### Use unordered lists for more than just text lists.
 	
-		If you have repeating content, whether they are articles, images, video, links or sections, use unordered lists as elements.
+		If you have repeating, related content, whether they are multiple articles, images, videos, links … use unordered lists as elements.
 	
 		Don't do this:
 		

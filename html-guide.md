@@ -66,21 +66,45 @@
 		There are no natural `inline-block` elements, but block elements are best to convert to `inline-block`. These elements are created by the `display: inline-block;` property in CSS. These elements have properties of both block elements and inline. `inline-block` elements can contain any kind of element — block or inline.
 		
 		`inline-block` elements take on the width of whatever they contain, unless specified otherwise. If an `inline-block` element contains a block element, then it will take up the full width of its container. If it contains an inline element, it is the width of whatever it contains.
+		
+3. ## Style (Block) Element
 
-3. ## Attributes
+	Rarely, if ever, use the `<style>` block element. There are very few reasons to write css within style tags in HTML. Always use external stylesheets!
+	
+	*The one exception is if you need to declare IE specific styling with a conditional stylesheet.*
+	
+4. ## Script
+
+	Including inline or in-page JavaScript should be avoided as much as possible. This again is going back to not mixing languages. JavaScript should be in .js files, CSS should be in .css files and HTML should be in .html files. So, if you have some page specific JavaScript that you don't want on your `site.js` file, create a separate `page.js` file and include it in just that page.
+	
+	Don't do this:
+	
+		<script type="text/javascript">
+			
+			// Bunch of JS functions and stuff in your .html file
+			
+		</script>
+		
+	Do this instead:
+	
+		<script type="text/javascript" src="/js/site.js"></script>
+	
+	But remember, cache anything that is used frequently throughout the site. If you are including different .js files throughout your site, find ways to write more reusable JavaScript so that you include it once and for all.
+
+4. ## Attributes
 
 	1. ### Classes
 	
 		1. Classes are traditionally used to add the hooks necessary for CSS styling. 
 		
-		2. Name classes with semantic names that describe either their purpose or their content. **Remember: use a naming convention that someone that is unfamiliar with the project could read and understand. Use either camel case or underscores for complex names.
+		2. Name classes with semantic names that describe either their content or their purpose. **Remember: use a naming convention that someone that is unfamiliar with the project could read and understand.** Use either camel case or underscores for complex names, but once you choose a convention, stick with it.
 		
 			Don't do this:
 			
 				<!-- Too ambigous -->
 				<div class="b1">
 				
-				<!-- hyphens don't allow double-click highlighting -->
+				<!-- hyphens can be troublesome when double clicking to copy -->
 				<div class="display-item">
 				
 			Do this instead:
@@ -91,7 +115,7 @@
 				
 			But, if you adopt a project, continue using whatever convention that has already been established. Don't mix and match.
 			
-		3. Try to avoid using multiple classes if possible.
+		3. Try to avoid using too many classes. You can do this by using parent-child relationships, [pseudo-classes](http://www.w3.org/wiki/CSS/Selectors#Pseudo-classes), [pseudo-elements](http://www.w3.org/wiki/CSS/Selectors#Pseudo-elements) and [pattern matching](http://www.w3.org/TR/CSS2/selector.html#pattern-matching). Whatever you do, don't rely on just a bunch of classes.
 		
 			Try to avoid this:
 			
@@ -104,7 +128,7 @@
 				
 			Now you can use `.blog .stickyArticle {}` in your CSS and then `.blog div:first-child {}` to style the first element in the list.
 			
-		4. Try to use classes for CSS and ID's for Javascript. Using classes rather than ID's for CSS prevents many specificity problems, and encourages code reuse.
+		4. Try to use classes for CSS and ID's for Javascript. Using classes, rather than ID's, for CSS prevents many specificity problems, and encourages code reuse.
 		
 	2. ### ID's
 	
@@ -116,9 +140,9 @@
 		
 	4. ### Events
 	
-		Inline Events like `onclick=""` should be used very carefully, if at all. Try to avoid mixing languages.
+		Inline Events like `onclick=""` should be used very carefully, if at all. Try to avoid mixing languages. If you do use it, make sure you are calling a single function that's on an external .js file.
 		
-4. ## Comments
+5. ## Comments
 
 	1. Comments should be used anytime there is ambiguity or complexity. If you are using PHP `includes` then a comment explaining what is being included is always a good idea.
 	
@@ -137,7 +161,7 @@
 				</div><!-- .content -->
 			</body>
 			
-5. ## Conventions
+6. ## Conventions
 
 	1. ### Use unordered lists for more than just text lists.
 	
@@ -168,6 +192,8 @@
 	2. ### Use HTML5 elements for extra semantics
 	
 		HTML5 has brought us a lot of great HTML elements that help us describe the content that they contain. This can eliminate the need for additional classes.
+		
+		// Briefly explain HTML5 elements …
 		
 
 

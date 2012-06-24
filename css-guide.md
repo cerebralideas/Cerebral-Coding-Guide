@@ -287,8 +287,23 @@
 			
 			
 			
-			
-			
+5. ## Performance
+
+	1. ### GZip your CSS
+	
+	2. ### Don't have Multiple CSS Files
+	
+	3. ### Minify your CSS
+	
+	4. ### Too many Redundant Declarations
+	
+	5. ### Use a Reset Stylesheet
+	
+	6. ### For More Details …
+	
+		See [Stubbornella's top five mistakes in CSS.](http://www.stubbornella.org/content/2010/07/01/top-5-mistakes-of-massive-css/)
+	
+		
 			
 			
 			

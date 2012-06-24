@@ -1,5 +1,6 @@
-# Cerebral Code-Style for JavaScript
+# Cerebral Code-Style for JavaScript (JS)
 ##### (Adapted from the "Idiomatic Style Manifesto")
+
 
 1. ## Whitespace Rules
 
@@ -27,6 +28,9 @@
 	6. Insert line-breaks, `\n`, only *after* commas, semicolons, braces — e.g. `{}`, or comments. Again, don't use line-breaks for statement termination, use semicolons (see item D above).
 	
 	7. Double line-breaks can be used to separate blocks (denoted by braces), from one another for increased readability.
+	
+	8. If hard-wrapping lines are necessary, follow the 80 character tradition, only breaking after an operator (e.g. a comma). But, like the customizable nature of tabs, it may be more considerate to use soft-wrapping, so that other developers may use their personal preference (some developers don't like line-wrapping at all; go figure?) allowed by modern code editors and IDE's.
+
 
 2. ## Beautiful Syntax
 
@@ -44,7 +48,13 @@
 					doSomething();
 		
 				for(var i=0;i<100;i++) someIterativeFn();
-		
+				
+			And, don't do this:
+			
+				if (condition)
+				{
+					doSomething();
+				}		
 			
 			Do this, and use whitespace to promote readability. Notice the space between the punctuation and the line-end after the open brace.
 			
@@ -78,13 +88,13 @@
 		
 			Don't do this:
 			
-				var foo = "";
-				var bar = "";
+				var foo = '';
+				var bar = '';
 				var qux;
 			
 			Do this instead:
 			
-				var foo = "bar",
+				var foo = 'bar',
 					num = 1,
 					undef;
 			
@@ -101,14 +111,14 @@
 			
 					// some statements here
 			
-					var bar = "",
+					var bar = '',
 						qux;
 					}
 			
 			Do this instead:
 			
 				function foo() {
-					var bar = "",
+					var bar = '',
 						qux;
 			
 					// all statements after the variables declarations.
@@ -220,19 +230,19 @@
 		
 			String:
 		
-				typeof variable === "string"
+				typeof variable === 'string'
 		
 			Number:
 		
-				typeof variable === "number"
+				typeof variable === 'number'
 		
 			Boolean:
 		
-				typeof variable === "boolean"
+				typeof variable === 'boolean'
 		
 			Object:
 		
-				typeof variable === "object"
+				typeof variable === 'object'
 		
 			Array:
 		
@@ -255,7 +265,7 @@
 		
 				Global Variables:
 		
-					typeof variable === "undefined"
+					typeof variable === 'undefined'
 		
 			Local Variables:
 		
@@ -265,14 +275,14 @@
 		
 				object.prop === undefined
 				object.hasOwnProperty( prop )
-				"prop" in object
+				'prop' in object
 		
 		2. You can preempt issues by using smart coercion with unary + or - operators:
 		
-				foo = +document.getElementById("foo-input").value;
+				foo = +document.getElementById('foo-input').value;
 				//		^ unary + operator will convert its right side operand to a number
 			
-				typeof foo;	// "number"
+				typeof foo;	// 'number'
 			
 				if (foo === 1) {
 					importantTask();
@@ -284,14 +294,14 @@
 		3. Here are some common cases along with coercions:
 		
 				var number = 1,
-					string = "1",
+					string = '1',
 					bool = false;
 		
 				number; // 1
 		
-				number + ""; // "1"
+				number + ''; // '1'
 		
-				string; // "1"
+				string; // '1'
 		
 				+string; // 1
 		
@@ -303,17 +313,17 @@
 		
 				+bool; // 0
 		
-				bool + ""; // "false"
+				bool + ''; // 'false'
 		
 		4. Equality
 		
 				var number = 1,
-					string = "1",
+					string = '1',
 					bool = true;
 		
 				string === number; // false
 		
-				string === number + ""; // true
+				string === number + ''; // true
 		
 				+string === number; // true
 		
@@ -327,20 +337,20 @@
 		
 		5. Arrays
 		
-				var array = [ "a", "b", "c" ];
+				var array = [ 'a', 'b', 'c' ];
 		
-				!!~array.indexOf("a"); // true
+				!!~array.indexOf('a'); // true
 		
-				!!~array.indexOf("b"); // true
+				!!~array.indexOf('b'); // true
 		
-				!!~array.indexOf("c"); // true
+				!!~array.indexOf('c'); // true
 		
-				!!~array.indexOf("d"); // false
+				!!~array.indexOf('d'); // false
 				
 		
 		6. Note that the above should be considered "unnecessarily clever". Prefer the obvious approach of comparing the returned value of indexOf, like:
 		
-				if ( array.indexOf( "a" ) >= 0 ) {
+				if ( array.indexOf( 'a' ) >= 0 ) {
 					// ...
 				}
 		
@@ -373,7 +383,7 @@
 		
 			Don't do this:
 			
-				if ( string !== "" ) ...
+				if ( string !== '' ) ...
 		
 			Do this instead:
 		 
@@ -384,7 +394,7 @@
 		
 			Don't do this:
 		
-				if ( string === "" ) ...
+				if ( string === '' ) ...
 		
 			Do this instead:
 		
@@ -410,12 +420,12 @@
 		
 				if ( !foo ) ...
 		
-			Be careful, this will also match: 0, "", null, undefined, NaN. If you _MUST_ test for a boolean false, then use
+			Be careful, this will also match: 0, '', null, undefined, NaN. If you _MUST_ test for a boolean false, then use
 		
 				if ( foo === false ) ...
 		
 		
-		7. When only evaluating a ref that might be null or undefined, but NOT false, "" or 0.
+		7. When only evaluating a ref that might be null or undefined, but NOT false, '' or 0.
 		
 			Don't do this:
 		
@@ -426,7 +436,7 @@
 				if ( foo == null ) ...
 		
 				// Remember, using == will match a `null` to BOTH `null` and `undefined`
-				// but not `false`, "" or 0
+				// but not `false`, '' or 0
 				null == undefined
 		
 		
@@ -438,11 +448,11 @@
 		
 			- `===` does not coerce type, which means that:
 		
-					"1" === 1; // false
+					'1' === 1; // false
 		
 			- == does coerce type, which means that:
 		
-					"1" == 1; // true
+					'1' == 1; // true
 	
 	8. ### Booleans, Truthies & Falsies
 	
@@ -452,81 +462,163 @@
 		
 		2. Truthy:
 		
-				"foo", 1
+				'foo', 1
 		
 		3. Falsy:
 		
-				"", 0, null, undefined, NaN, void 0
+				'', 0, null, undefined, NaN, void 0
 
 
-3. ## Practical Style
+3. ## Practical Patterns
 
-	1. ### Practical Module
+	1. ### For Single (or Few) Instances
 	
-			(function( global ) {
-				var Module = (function() {
+		For the most basic object creation patterns, you have a couple of patterns at your disposal. We'll stick to the Singleton and Module pattern (for more patterns and far more details, see [Addy Osmani's Book of JS Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/)). They are quick to create, easy to understand and utilize the prototypal nature (objects inheriting from other objects) of JavaScript. The one downside is each object contains it's own properties and methods, so when multiple objects are used on a single page, memory and performance is sacrificed (for multiple instance patterns, see section 3.2 below).
 	
-					var data = "secret";
+		1. #### Singleton Method
+		
+			This is a very basic and common method used for object creation in JavaScript. Although, it's not highly recommended, it is good to know.
+		
+				var primate = {
+				
+					kingdom: 'Animalia',
+					phylum: 'Chordata',
+					class: 'Mammalia',
+					order: 'Primates',
+					
+					useThumbs: function () {
+						
+						console.log('grab object');
+					}
+				};
+				
+				var human = primate;
+
+				human.species = 'Homo sapiens';
+				human.makeFire = function () {
+				
+					console.log('rub sticks together');
+				}
+				
+				// Inherited properties
+				human.kingdom; // Animalia
+				human.useThumbs; // writes 'grab object' to console
+				
+				// Special properties
+				human.species; // Homo sapiens
+				human.makeFire; // writes 'rub sticks together' to console
+
+
+		2. #### Module Method
+		
+			This is the more recommended pattern for single (or few) object creation. It takes advantage of the closure pattern, allowing for private data and privileged functions. Because of all of this, it is slightly more complex.
+		
+				(function(global) {
+					var Module = (function() {
+		
+						var data = 'secret';
+		
+						return {
+							getData: function() {
+								// get the current value of `data`
+								return data;
+							},
+							setData: function(value) {
+								// set the value of `data` and return it
+								return (data = value);
+							}
+						};
+					})();
+		
+					// Other things might happen here
+		
+					// expose our module to the global object
+					global.Module = Module;
+		
+				}(this));
+
+
+	2. ### For Multiple Instances
 	
-					return {
-						// This is some boolean property
-						bool: true,
-						// Some string value
-						string: "a string",
-						// An array property
-						array: [ 1, 2, 3, 4 ],
-						// An object property
-						object: {
-							lang: "en-Us"
-						},
-						getData: function() {
-							// get the current value of `data`
-							return data;
-						},
-						setData: function( value ) {
-							// set the value of `data` and return it
-							return ( data = value );
+		1. #### "Classical" Inheritance
+		
+			JavaScript can not perfectly replicate the classical style inheritance like Java, C languages and others. As said above, JS has prototypal inheritance, so building classes in JS is not quite as straight-forward as many classical programmers would like. This makes JS loved and hated by many, but an object's ability to inherit from other objects using JS's more relaxed inheritance makes developing in JS very easy.
+			
+			But, if you are having to instantiate multiple objects onto a single page, using a more "classical" style can be much more beneficial. For this, we take advantage of the Constructor/Prototype pattern. It's much faster and more memory conservative. It takes a bit more advanced logic, has some bad side-effects if written poorly, but it can pay off in dividends if done right.
+			
+			Example of basic Constructor/Prototype pattern with side effect:
+			
+				// Create constructor (Always capitalize the constructor function!)
+				function User(name){
+					this.name = name;
+				}
+				User.prototype = {
+				
+					constructor: User
+					getName: function () {
+						return this.name;
+					}
+				};
+
+				// Using the *new* keyword, everything's gravy
+				var newUser = new User('John Doe');
+				
+				newUser.getName(); // 'John Doe​​​'
+				
+				// But, what if we forget the *new* keyword?
+				var anotherUser = User('Jane Doe');
+				
+				anotherUser.getName(); // Error: Cannot call method 'getName' of undefined
+			
+			To fix this issue and follow best practices for maintainability, we can use a slight variation of the above. To avoid the necessity of the `new` operator, we can test for it. If it wasn't used, we'll fix it, but write a warning to the console (this is important as we do want to encourage proper practices). Let's also wrap the Constructor/Prototype in a self-invoking function to make into a nice neat package for readability.
+
+				(function (global) {
+    
+					// Now, create our Constructor function
+					function User(name) {
+						
+						// We first test to see if the newly created object
+						// is an instance of this Constructor. In other words,
+						// test if the *new* keyword was used.
+						if (!(this instanceof User)) {
+					
+							// If it isn't, then we write a warning out to
+							// the console …
+							console.log('Warning: Constructor function "User" should be used with the "new" operator.');
+					
+							// … and fix the issue
+							return new User(name);
+						}
+						
+						// assign the argument to the *this* keyword
+						this.name = name;
+						
+						return this;
+					};
+					
+					// Create our prototype as usual
+					User.prototype = {
+					
+						constructor: User,
+						getName: function () {
+							return this.name;
 						}
 					};
-				})();
-	
-				// Other things might happen here
-	
-				// expose our module to the global object
-				global.Module = Module;
-	
-			}(this));
+					
+					global.User = User;
 
-	2. ### Practical Constructor
+				}(this));
 
-			(function( global ) {
-	
-				function Ctor( foo ) {
-	
-					this.foo = foo;
-	
-					return this;
-				}
-	
-				Ctor.prototype.getFoo = function() {
-					return this.foo;
-				};
-	
-				Ctor.prototype.setFoo = function( val ) {
-					return ( this.foo = val );
-				};
-	
-	
-				// To call constructor's without `new`, you might do this:
-				var ctor = function( foo ) {
-					return new Ctor( foo );
-				};
-	
-	
-				// expose our constructor to the global object
-				global.ctor = ctor;
-	
-			}(this));
+				// Create a *new* object inheriting from our class as usual
+				var newUser = new User('John Doe');
+				
+				console.log(newUser.getName()); // 'John Doe'
+				
+				// If the *new* keyword is not used, it works, but you get
+				// a warning written out to the console.
+				var anotherUser = User('Jane Doe');
+				
+				console.log(anotherUser.getName()); // 'Jane Doe'​ | 'Warning: Constructor function "User" should be used with the "new" operator.'
 
 
 	3. ### Naming
@@ -538,7 +630,7 @@
 			function q(s) {
 				return document.querySelectorAll(s);
 			}
-			var i,a=[],els=q("#foo");
+			var i,a=[],els=q('#foo');
 			for(i=0;i<els.length;i++){a.push(els[i]);}
 	
 	
@@ -551,7 +643,7 @@
 	
 			var idx = 0,
 				elements = [],
-				matches = query("#foo"),
+				matches = query('#foo'),
 				length = matches.length;
 	
 			for( ; idx < length; idx++ ){
@@ -677,10 +769,10 @@
 		An example switch statement
 		
 			switch (foo) {
-				case "alpha":
+				case 'alpha':
 					alpha();
 					break;
-				case "beta":
+				case 'beta':
 					beta();
 					break;
 				default:
@@ -732,9 +824,9 @@
 				var ret;
 		
 				if ( foo ) {
-					ret = "foo";
+					ret = 'foo';
 				} else {
-					ret = "quux";
+					ret = 'quux';
 				}
 				return ret;
 				}
@@ -744,9 +836,9 @@
 			function returnEarly(foo) {
 		
 				if (foo) {
-					return "foo"; // Exits function here.
+					return 'foo'; // Exits function here.
 				}
-				return "quux"; // Exits here if cond fails
+				return 'quux'; // Exits here if cond fails
 			}
 			
 	3. ### Save time and effort and use the literal notation — `{}` or `[]`
@@ -773,7 +865,7 @@
 	 
 	2. ### Commenting a Section
 	
-		Multi-line comments should be used for separating unrelated sections of code and text should be ALL-CAPS with a blank line between the comment and the next line of code.
+		Multi-line comments should be used for separating unrelated blocks of code; text should be ALL-CAPS with a blank line between the comment and the next line of code.
 		
 			/**********************************
 			* THIS STARTS A NEW SECTION *
@@ -787,31 +879,70 @@
 	 
 			calc(h, w); // Adds height and width
 			
-7. ## JavaScript Resources
+
+7. ## Handling Content with AJAX
+
+	Carefully evaluate your need for dynamically loading content via AJAX. Completely relying on JS for content, state and routing should only be used in certain types of projects. Most projects benefit from a balanced architecture, rather than all or none approach. There's more information about this topic on Twitter's Engineering blog: [Improving performance on twitter.com](http://engineering.twitter.com/2012/05/improving-performance-on-twittercom.html).
+
+	1. #### Load the Core & Most Relevant Content Statically
+	
+		* Don't rely solely on JS to load all data. If JS fails or is slow, you don't want the user staring at a blank page that looks like it finished loading. 
+		
+		* JS (the browser) is not optimized to crunch lots of data.
+			
+	2. #### Load Subsequent & Extraneous Data Content with JS
+		
+		* Perceived page load is faster due to core content displayed on screen without dependencies.
+		
+		* The use of "lazy loading" or loading content after user action spares having to load undesired content on page load.
+		
+	3. #### If You Are Going to Control State & Routing with JS
+	
+		* Have static fallback
+		
+		* Use a proven framework
+		
+		
+8. ## JavaScript Resources
 
 	* [http://es5.github.com/](http://es5.github.com/)
+	
 	* [Baseline For Front End Developers](http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/)
+	
 	* [Eloquent JavaScript](http://eloquentjavascript.net/)
+	
 	* [JavaScript, JavaScript](http://javascriptweblog.wordpress.com/)
+	
 	* [Adventures in JavaScript Development](http://rmurphey.com/)
+	
 	* [Perfection Kills](http://perfectionkills.com/)
+	
 	* [Douglas Crockford's Wrrrld Wide Web](http://www.crockford.com)
+	
 	* [JS Assessment](https://github.com/rmurphey/js-assessment)
+	
 	* [Leveraging Code Quality Tools by Anton Kovalyov](http://anton.kovalyov.net/slides/gothamjs/)
-	<p></p>
+
  
-8. ## Build & Deployment Process
+9. ## Build & Deployment Process
 
 	Projects should always attempt to include some generic means by which source can be linted, tested and compressed in preparation for production use. [Grunt](https://github.com/cowboy/grunt) by Ben Alman is second to none and has officially replaced the "kits/" directory of this repo.
 
-9. ## Test Facility
+10. ## Tests
 
 	Projects _must_ include some form of unit, reference, implementation or functional testing. Use case demos DO NOT QUALIFY as "tests". The following is a list of test frameworks, none of which are endorsed more than the other.
 	
 	* [QUnit](http://github.com/jquery/qunit)
+	
 	* [Jasmine](https://github.com/pivotal/jasmine)
+	
 	* [Vows](https://github.com/cloudhead/vows)
+	
 	* [Mocha](https://github.com/visionmedia/mocha)
+	
 	* [Hiro](http://hirojs.com/)
+	
 	* [JsTestDriver](https://code.google.com/p/js-test-driver/)
+	
 	* [Buster.js](http://busterjs.org/)
+	

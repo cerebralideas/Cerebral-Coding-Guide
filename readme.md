@@ -1,6 +1,6 @@
 # Front-End Style and Conventions Guide
 
-#### This Living Document is an Attempt to Represent the Baseline for Front-End Development
+#### This Work-in-Progress is a Living Document and an Attempt to Represent the Baseline for Front-End Development
 ##### (Contribute: fork, clone, branch, commit, push, pull request.)
 
 ## Preface

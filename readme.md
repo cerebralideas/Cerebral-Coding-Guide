@@ -10,9 +10,9 @@ The following documents outline a _reasonable_ style guide and promote proven co
 Link to this document as a statement of your project's commitment to code consistency, readability and maintainability. Three documents will cover each basic, front-end language every front-end dev needs to know — **HTML, CSS and JavaScript**.
 
 1. ## Contributors:
-
 	### Current Author:
 	* Justin Lowery [@cerebralideas](http://twitter.com/cerebralideas), [github](https://github.com/cerebralideas)
+	
 	### Authors of idiomatic.js (which inspired the JavaScript Guide):
 	* Rick Waldron [@rwaldron](http://twitter.com/rwaldron), [github](https://github.com/rwldrn)
 	* Mathias Bynens [@mathias](http://twitter.com/mathias), [github](https://github.com/mathiasbynens)
@@ -26,6 +26,7 @@ Link to this document as a statement of your project's commitment to code consis
 	* Leo Beto Souza [@leobetosouza](http://twitter.com/leobetosouza), [github](https://github.com/leobetosouza)
 	* Ryuichi Okumura [@okuryu](http://twitter.com/okuryu), [github](https://github.com/okuryu)
 	* EngForDev [engfordev](http://www.opentutorials.org/course/167/1363) - Hwan Min Hong / MinTaek Kwon [@leoinsight](http://twitter.com/leoinsight) / Tw Shim [@marocchino](http://twitter.com/marocchino), [github](https://github.com/marocchino) / Nassol Kim [@nassol99](http://twitter.com/nassol99), [github](https://github.com/nassol) / Juntai Park [@rkJun](http://twitter.com/rkJun), [github](https://github.com/rkJun) / Minkyu Shim / Gangmin Won / Justin Yoo [@justinchronicle](http://twitter.com/justinchronicle) / Daeyup Lee
+
 
 2. ## Global Rules:
 
@@ -43,11 +44,12 @@ Link to this document as a statement of your project's commitment to code consis
 	7. Collaborate and ask for code reviews, i.e. don't develop in a bubble!
 	8. Be awesome and write beautifully clean and inspiring code.
 
+
 3. ## Table of Contents
 
 	1. HTML Guide
-		1. (Waiting to complete version 1.0 of document)
+		* (Waiting to complete version 1.0 of document)
 	2. CSS Guide
-		1. (Waiting to complete version 1.0 of document)
+		* (Waiting to complete version 1.0 of document)
 	3. JavaScript Guide
-		1. (Waiting to complete version 1.0 of document)
+		* (Waiting to complete version 1.0 of document)

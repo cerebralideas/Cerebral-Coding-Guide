@@ -27,7 +27,6 @@ Link to this document as a statement of your project's commitment to code consis
 	* Ryuichi Okumura [@okuryu](http://twitter.com/okuryu), [github](https://github.com/okuryu)
 	* EngForDev [engfordev](http://www.opentutorials.org/course/167/1363) - Hwan Min Hong / MinTaek Kwon [@leoinsight](http://twitter.com/leoinsight) / Tw Shim [@marocchino](http://twitter.com/marocchino), [github](https://github.com/marocchino) / Nassol Kim [@nassol99](http://twitter.com/nassol99), [github](https://github.com/nassol) / Juntai Park [@rkJun](http://twitter.com/rkJun), [github](https://github.com/rkJun) / Minkyu Shim / Gangmin Won / Justin Yoo [@justinchronicle](http://twitter.com/justinchronicle) / Daeyup Lee
 
-
 2. ## Global Rules:
 
 	1. All code should look like a single person typed it, no matter how many people contributed.	
@@ -43,7 +42,6 @@ Link to this document as a statement of your project's commitment to code consis
 		* [csslint](http://csslint.net)
 	7. Collaborate and ask for code reviews, i.e. don't develop in a bubble!
 	8. Be awesome and write beautifully clean and inspiring code.
-
 
 3. ## Table of Contents
 

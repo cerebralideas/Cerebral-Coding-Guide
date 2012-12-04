@@ -10,9 +10,13 @@
 1. Never leave whitespace at line ends or within blank lines. Many editors and IDE's have a setting to remove all unnecessary white-space.
 	
 1. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
+
 	- Enforced consistency
+
 	- Eliminating end of line whitespace
+
 	- Eliminating blank line whitespace
+ 
 	- Commits and diffs that are easier to read
 	
 1. Set your line length at a maximum of 120 characters

@@ -6,18 +6,19 @@
 
 	If you are starting a project, and you have a choice, **USE TABS**. I personally believe tabs give more control to those that adopt the project. Many code editors and IDE's are now allowing users to customize the width of a tab.
 	
-	For readability, and if your editor allows, I recommend setting your editor's tab size to be equivalent to four spaces. This will help align multi-line declarations and conditions.	
+	For readability, and if your editor allows, I recommend setting your editor's tab size to be equivalent to four spaces. This will help align multi-line declarations and conditions.
+	
 1. Never leave whitespace at line ends or within blank lines. Many editors and IDE's have a setting to remove all unnecessary white-space.
 	
 1. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
 
-	- Enforced consistency
+	* Enforced consistency
 
-	- Eliminating end of line whitespace
+	* Eliminating end of line whitespace
 
-	- Eliminating blank line whitespace
+	* Eliminating blank line whitespace
  
-	- Commits and diffs that are easier to read
+	* Commits and diffs that are easier to read
 	
 1. Set your line length at a maximum of 120 characters
 		

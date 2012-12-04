@@ -11,7 +11,6 @@
 1. Never leave whitespace at line ends or within blank lines. Many editors and IDE's have a setting to remove all unnecessary white-space.
 	
 1. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
-
 	* Enforced consistency
 
 	* Eliminating end of line whitespace

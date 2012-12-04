@@ -29,7 +29,7 @@ Link to this document as a statement of your project's commitment to code consis
 
 2. ## Global Rules:
 
-	1. All code should look like a single person typed it, no matter how many people contributed.	
+	1. All code should look like a single person typed it, no matter how many people contributed.
 	2. Write readable, understandable code. Don't code as if you are the only one who needs to understand it.
 	3. Don't be afraid to adopt new, modern techniques, i.e. don't do things just because that's how you've always done them
 	4. Use proven conventions and techniques

@@ -95,17 +95,19 @@
 
 	1. ### Classes
 	
-		1. Classes are traditionally used to add the hooks necessary for CSS styling. 
+		1. Classes are traditionally used to add the hooks necessary for CSS styling, so *try* to avoid using classes for selecting elements in JS. If you do use classes for selection in JS, then it's best to use a separate class with the prefix of `js-` so that other developers know which classes are used for styling and which are used for the JS. If you don't, another developer could easily change the class to alter styling, and accidentally break the site's JS.
 		
-		2. Name classes with semantic names that describe either their content or their purpose. **Remember: use a naming convention that someone that is unfamiliar with the project could read and understand.** Use either camel case or underscores for complex names, but once you choose a convention, stick with it.
+		2. Name classes with semantic names that describe either their content or their purpose. **Remember: use a naming convention that someone that is unfamiliar with the project could read and understand its use.** I prefer using camel case for classes and id naming. Underscores can also be used for complex names, but once you choose a convention, stick with it.
 		
 			Don't do this:
 			
 				<!-- Too ambigous -->
 				<div class="b1">
 				
-				<!-- hyphens can be troublesome when double clicking to copy -->
+				<!-- Hyphens can be troublesome when double clicking to copy -->
+				<!-- Try to double click the class below -->
 				<div class="display-item">
+				<!-- You can't can you? That's why I hate using hyphens -->
 				
 			Do this instead:
 			
@@ -113,13 +115,13 @@
 				
 				<button class="primary_action">
 				
-			But, if you adopt a project, continue using whatever convention that has already been established. Don't mix and match.
+			**But, if you adopt a project, continue using whatever convention that has already been established. Don't mix and match.**
 			
 		3. Try to avoid using too many classes. You can do this by using parent-child relationships, [pseudo-classes](http://www.w3.org/wiki/CSS/Selectors#Pseudo-classes), [pseudo-elements](http://www.w3.org/wiki/CSS/Selectors#Pseudo-elements) and [pattern matching](http://www.w3.org/TR/CSS2/selector.html#pattern-matching). Whatever you do, don't rely on just a bunch of classes.
 		
 			Try to avoid this:
 			
-				<article class="blog article sticky first yellow">
+				<article class="blog-item article sticky first yellow">
 				
 			Do this instead:
 			
@@ -132,7 +134,11 @@
 		
 	2. ### ID's
 	
-		ID's must be unique and not shared with any other element in the document, they should follow the same naming pattern as classes and you can only have one ID per element. ID's should be reserved for JavaScript when possible.
+		ID's must be unique and not shared with any other element in the document, they should follow the same naming pattern as classes and you can only have one ID per element. ID's should be rather permanent and not modified often. ID's should be reserved for JavaScript when possible, and not used too often in CSS.
+		
+		Why should you try to avoid using ID's in CSS? Well, because it's easy to get into a messy CSS specificity issue as ID's take precendence over other selector types. 
+		
+		I only use ID's in CSS styling when refering to a major block within a layout. In other words, blocks that are direct children or grandchildren of the `<body>` tag. *I do not use them for end nodes and small elements.*
 		
 	3. ### Style
 	
@@ -140,11 +146,36 @@
 		
 	4. ### Events
 	
-		Inline Events like `onclick=""` should be used very carefully, if at all. Try to avoid mixing languages. If you do use it, make sure you are calling a single function that's on an external .js file.
+		Inline Events like `onclick=""` should be used very carefully, if at all. Try to avoid mixing languages. If you do use it, make sure you are calling a single function that's on an external .js file. Don't write JS within inline events.
 		
 5. ## Comments
 
 	1. Comments should be used anytime there is ambiguity or complexity. If you are using PHP `includes` then a comment explaining what is being included is always a good idea.
+	
+		Example:
+		
+			<?php
+
+			/* Custom WP Carousel Loop:
+			 * Create new hero query from the custom post 
+			 * type Hero Carousel Items, loop through the items
+			 * and post them to page.
+			 */
+
+			// Custom hero query
+			$hero_query = new WP_Query('post_type=hero_carousel_items&&oderby=menu_order');
+			
+			// Post counter: used for alternating image placement
+			$postCount = 0;
+
+			// Loop through the retrieved items
+			while ($hero_query->have_posts()) : $hero_query->the_post(); ?>
+
+				<?php $postCount++; ?>
+				
+				<?php include 'hero.php'; ?>
+
+			<?php endwhile; ?>
 	
 	2. Use comments for closing tags that could be far from there opening tag. This helps debug issues where finding a close tag for a div can be near impossible when there are 20 div's between it and it's opening tag.
 	

@@ -540,14 +540,14 @@
 
 	2. ### For Multiple Instances
 	
-		1. #### "Classical" Inheritance
+		1. #### Constructor/Prototype Pattern ("Classical" Inheritance)
 		
 			JavaScript can not perfectly replicate the classical style inheritance like Java, C languages and others. As said above, JS has prototypal inheritance, so building classes in JS is not quite as straight-forward as many classical programmers would like. This makes JS loved and hated by many, but an object's ability to inherit from other objects using JS's more relaxed inheritance makes developing in JS very easy.
 			
 			But, if you are having to instantiate multiple objects onto a single page, using a more "classical" style can be much more beneficial. For this, we take advantage of the Constructor/Prototype pattern. It's much faster and more memory conservative. It takes a bit more advanced logic, has some bad side-effects if written poorly, but it can pay off in dividends if done right.
 			
 			Example of basic Constructor/Prototype pattern with side effect:
-			
+
 				// Create constructor (Always capitalize the constructor function!)
 				function User(name){
 					this.name = name;
@@ -570,7 +570,7 @@
 				
 				anotherUser.getName(); // Error: Cannot call method 'getName' of undefined
 			
-			To fix this issue and follow best practices for maintainability, we can use a slight variation of the above. To avoid the necessity of the `new` operator, we can test for it. If it wasn't used, we'll fix it, but write a warning to the console (this is important as we do want to encourage proper practices). Let's also wrap the Constructor/Prototype in a self-invoking function to make into a nice neat package for readability.
+			To fix this issue and follow best practices for maintainability, we can use a slight variation of the above. To avoid the unfortunate side-effect of a missing `new` operator, we can test for it. If it wasn't used, we'll fix it, but write a warning to the console (this is important as we want to encourage proper coding practices). Let's also wrap the Constructor/Prototype in a self-invoking function to make into a nice neat package for readability.
 
 				(function (global) {
     
@@ -620,83 +620,168 @@
 				
 				console.log(anotherUser.getName()); // 'Jane Doe'​ | 'Warning: Constructor function "User" should be used with the "new" operator.'
 
+		2. #### Resig's Class Maker
+		
+			This is a slight variation to the above Constructor/Prototype pattern offered by John Resig. He goes into detail about it on his article, [Simple “Class” Instantiation](http://ejohn.org/blog/simple-class-instantiation/). He mentions how jQuery uses this pattern, and avoids the necessary `new` operator when creating new jQuery objects — `jQuery('div')` and `new jQuery('div')` are virtually the same, although slightly different under the hood.
+		
+				// makeClass - By John Resig (MIT Licensed)
+				function makeClass(){
+				
+					return function(args){
+					
+						if ( this instanceof arguments.callee ) {
+						
+							if ( typeof this.init == "function" ) {
+							
+								this.init.apply( this, args.callee ? args : arguments );
+							}
+							
+						} else {
+						
+							return new arguments.callee( arguments );
+						}
+					};
+				}
+				
+				var User = makeClass();
+				
+				User.prototype.init = function(first, last){
+				
+					this.name = first + " " + last;
+				};
+				
+				var user = User("John", "Resig");
+				
+				user.name // => "John Resig" 
 
 	3. ### Naming
 	
-		You are not a human code compiler/compressor, so don't try to be one.
+		You are not a human code compiler/compressor, so don't try to be one. Here are a few general rules:
 		
-		Example of code with poor names
-	
-			function q(s) {
-				return document.querySelectorAll(s);
-			}
-			var i,a=[],els=q('#foo');
-			for(i=0;i<els.length;i++){a.push(els[i]);}
-	
-	
-		Here's the same piece of logic, but with kinder, more thoughtful naming (and a readable structure):
+		1. #### Primitives should be singular nouns
 		
-	
-				function query( selector ) {
-				return document.querySelectorAll( selector );
-			}
-	
-			var idx = 0,
-				elements = [],
-				matches = query('#foo'),
-				length = matches.length;
-	
-			for( ; idx < length; idx++ ){
-				elements.push( matches[ idx ] );
-			}
-	
-		A few additional naming pointers:
+				var quote = 'I am what I am.';
 		
-			// Naming strings
-	
-			`dog` is a string			
-	
-			// Naming arrays
-	
-			`dogs` is an array of `dog` strings
+		2. #### Objects should be singular nouns
+		
+				var myValue = {
+				
+					my: value					
+				};
+		
+		3. #### Arrays and NodeLists should be plural nouns
+		
+				var favColors = [blue, red, purple];
+				
+				var listItems = document.getElementsByTagName('li');		
+		4. #### Functions should be verbs
+		
+				function sayHi() {
+				
+					return 'Hi';
+				}
+				
+				var sayHi = function () {
+				
+					return 'Hi';
+				}
+				
+		5. #### Use real words				
+		
+			Example of code with poor names
+		
+				function q(s) {
+					return document.querySelectorAll(s);
+				}
+				var i,a=[],els=q('#foo');
+				for(i=0;i<els.length;i++){a.push(els[i]);}
+		
+		
+			Here's the same piece of logic, but with kinder, more thoughtful naming (and a readable structure):
 			
+		
+				function query(selector) {
+					return document.querySelectorAll( selector );
+				}
+		
+				var elements = [],
+					fooNodes = query('#fo'),
+					length = fooNodes.length,
+					iter;
+		
+				for (iter = 0 ; iter < length; iter++ ) {
+				
+					elements.push( matches[ iter ] );
+				}
 	
-			// Naming functions, objects, instances, etc
-	
-			camelCase; function and var declarations
-			
-	
-			// Naming constructors, prototypes, etc.
-	
-			PascalCase; constructor function
-	
-	
-			// Naming regular expressions
-	
-			rDesc = //;
+		6. #### Use Case to Communicate:
+		
+				// Naming basic functions, objects, instances, etc
+		
+				camelCase; function and var declarations
+				
+		
+				// Naming constructors, prototypes, etc.
+		
+				PascalCase; constructor function
 		
 		
-		From the Google Closure Library Style Guide
+				// Naming regular expressions
 		
-			functionNamesLikeThis;
+				rDesc = //;
 			
-			variableNamesLikeThis;
 			
-			ConstructorNamesLikeThis;
+			From the Google Closure Library Style Guide
 			
-			EnumNamesLikeThis;
+				functionNamesLikeThis;
+				
+				variableNamesLikeThis;
+				
+				ConstructorNamesLikeThis;
+				
+				EnumNamesLikeThis;
+				
+				methodNamesLikeThis;
+				
+				SYMBOLIC_CONSTANTS_LIKE_THIS;
 			
-			methodNamesLikeThis;
-			
-			SYMBOLIC_CONSTANTS_LIKE_THIS;
-			
-		Don't use the dollar sign, `$`, or the underscore, `_`, unless it's meaning is obvious and well explained. An example would be when you cached DOM elements and you don't always use jQuery to select the element. The dollar sign could differentiate between jQuery elements and regular JS elements.
+		7. #### KISS
 		
-		Example:
+			Avoid the use of special characters when possible. Prefixing names with the dollar sign, `$`, or the underscore, `_`, can mean many different things to many different people.
+			
+			If you feel the need to communicate a real difference between named objects/elements, make sure its meaning is obvious, well explained and communicates a real difference. An example would be when you have raw JS objects and jQuery object mixed together. For example, the dollar sign could differentiate between jQuery objects containing DOM elements from regular JS NodeLists.
 		
-			var $element = $('#myElement'),
-				element = document.getElementById('myElement');
-		
+			But, if you use this technique, explain it in a comment at the top of the JS file, so everyone is aware of this convention.
+			
+			Example:
+			
+				/**********************************
+				* DOM SELECTOR THING FOR XYZ *
+				
+				* NOTE: Prefixing a name with the $ 
+				  communicates a jQuery object. *
+				***********************************/
+
+				var $listItems = $('li');
+				
+				// JavaScript NodeLists aren't
+				var listItems = document.getElementByTagName('li');
+				
+			This prevents people from wrapping jQuery objects with another jQuery object. Example:
+			
+				var listItems = $('li');
+				
+				// This calls the jQuery object on a jQuery object
+				// Not performant :(
+				$(listItems).addClass('oops');
+				
+				
+				// If instead you use the $ prefix on vars
+				// This tells other devs that this is already wrapped
+				var $listItems = $('li');
+				
+				// Better :)
+				$listItems.addClass('ahhh');
 	
 4. ## Performance Suggestions
 

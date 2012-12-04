@@ -52,7 +52,9 @@ Link to this document as a statement of your project's commitment to code consis
 	
 	7. Collaborate and ask for code reviews, i.e. don't develop in a bubble!
 	
-	8. Be awesome and write beautifully clean and inspiring code.
+	8. Mark tasks for yourself and others by starting a comment with `TODO:`.
+	
+	9. Be awesome and write beautifully clean and inspiring code.
 	
 2. ## Table of Contents
 

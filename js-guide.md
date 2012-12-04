@@ -17,7 +17,6 @@
 1. Terminate statements with semicolons. Don't write code that depends on automatic semicolon insertion or ASI. ASI is not a syntactical feature but an error correction procedure (see [Brendan Eich's article](http://brendaneich.com/2012/04/the-infernal-semicolon/)).
 	
 1. If your editor supports it, always work with the "show invisibles" setting turned on. The benefits of this practice are:
-	
 	- Enforced consistency		
 	- Eliminating end of line whitespace	
 	- Eliminating blank line whitespace	

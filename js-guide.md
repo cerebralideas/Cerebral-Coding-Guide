@@ -970,25 +970,20 @@ These are allowed if very short (~5 words)!
 Carefully evaluate your need for dynamically loading content via AJAX. Completely relying on JS for content, state and routing should only be used in certain types of projects. Most projects benefit from a balanced architecture, rather than all or none approach. There's more information about this topic on Twitter's Engineering blog: [Improving performance on twitter.com](http://engineering.twitter.com/2012/05/improving-performance-on-twittercom.html).
 
 1. **Load the Core Data & Templating (HTML) Statically**
-	
 	* Don't rely solely on JS to load all data and HTML. If JS fails or is slow, you don't want the user staring at a blank page that looks like it finished loading. 
 	* Don't rely on JavaScript or the browser to crunch lots of data; it will fail.
 			
 1. **Load Subsequent & Extraneous Data Content with JS**
-		
 	* Perceived page load is faster due to core content displayed on screen without dependencies.
 	* The use of "lazy loading" or loading content after user action spares having to load undesired content on page load.
 		
 1. **If You Are Going to Control State & Routing with JS**
-	
 	* Have static fallback		
 	* Use a proven framework
 	
 1. **Take advantage of JSON for data transmission**
-
 	* Don't import XML or HMTL partials, use JSON to pass data back and forth from the server.
-	
-	
+
 		
 ## JavaScript Resources
 

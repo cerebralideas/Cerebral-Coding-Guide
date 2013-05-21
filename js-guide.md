@@ -22,7 +22,7 @@
 	- Eliminating blank line whitespace	
 	- Commits and diffs that are easier to read
 		
-1. Insert line-breaks, `\n`, only *after* commas, semicolons, braces — e.g. `{}`, or comments. Again, don't use line-breaks for statement termination, use semicolons (see item D above).
+1. Insert line-breaks, `\n`, only *after* commas, semicolons, braces — e.g. `{}`, or comments. Again, don't use line-breaks for statement termination, use semicolons (see item 6 above).
 	
 1. Double line-breaks can be used to separate blocks (denoted by braces), from one another for increased readability.
 
@@ -534,13 +534,13 @@ For the most basic object creation patterns, you have a couple of patterns at yo
 	
 		}(this));
 		
-	With this pattern, everything is passed by value, which is not the most performant if many of these objects are created on the same page.
+	The weakness of this pattern is it's much harder to control what's passed by value and what is passed by reference. The module pattern doesn't use reference pointers, so each object has its own methods, which is not the most memory conservative pattern if there are many of these objects are created on the same page.
 
 ### For Multiple Instances
 	
 1. **Constructor/Prototype Pattern ("Classical" Inheritance)**
 		
-	JavaScript can not perfectly replicate the classical style inheritance like Java, C languages and others. As said above, JS has prototypal inheritance, so building classes in JS is not quite as straight-forward as many classical programmers would like. This makes JS loved and hated by many, but an object's ability to inherit from other objects using JS's more relaxed inheritance makes developing in JS very easy.
+	JavaScript can not replicate the classical style inheritance like Java, C languages and others. As said above, JS has prototypal inheritance, so building classes in JS is not quite as straight-forward as many classical programmers would like. This makes JS loved and hated by many, but an object's ability to inherit from other objects using JS's more relaxed inheritance makes developing in JS very easy.
 			
 	But, if you are having to instantiate multiple objects onto a single page, using a more "classical" style can be much more beneficial. For this, we take advantage of the Constructor/Prototype pattern. It's much faster and more memory conservative. It takes a bit more advanced logic, has some bad side-effects if written poorly, but it can pay off in dividends if done right.
 			

@@ -534,7 +534,7 @@ For the most basic object creation patterns, you have a couple of patterns at yo
 	
 		}(this));
 		
-	The weakness of this pattern is it's much harder to control what's passed by value and what is passed by reference. The module pattern doesn't use reference pointers, so each object has its own methods, which is not the most memory conservative pattern if there are many of these objects are created on the same page.
+	The weakness of this pattern is it's much harder to control what's passed by value and what is passed by reference. The module pattern doesn't use reference pointers for its methods, so each object has its own, which is not the most memory conservative pattern if there are many objects created on the same page.
 
 ### For Multiple Instances
 	

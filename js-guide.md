@@ -2,6 +2,20 @@
 (Adapted from the "Idiomatic Style Manifesto")
 
 
+## General Guidelines
+
+### Avoid polluting the global environment
+
+1. Encapsulation is highly recommended by taking advantage of function scope. A good example is wrapping your code in IIFE's (see Practical Patterns below).
+
+1. Use [AMD](http://en.wikipedia.org/wiki/Asynchronous_module_definition) or some other [module definition](http://wiki.commonjs.org/wiki/Modules/1.1.1) (e.g. [RequireJS](http://requirejs.org/))
+ 
+1. Namespace so that there is only one global object that all project code is attached.
+ 
+### Use Strict
+
+In the top most function wrapper, include the `use strict` statement to ensure stricter code standards and avoidance of common code bugs. Nicholas Zakas, aka [@slicknet](https://twitter.com/slicknet/), says [it's time to start using it](http://www.nczonline.net/blog/2012/03/13/its-time-to-start-using-javascript-strict-mode/).
+
 ## Whitespace Rules
 
 1. Never mix spaces and tabs; this is the **law**!
@@ -466,6 +480,18 @@ Whitespace can ruin diffs and make changesets impossible to read. Consider incor
 
 
 ## Practical Patterns
+
+### IIFE or the Immediately Invoked Function Expression
+
+Ben Alman, or [@cowboy](https://twitter.com/cowboy), is the [one who champions this pattern](http://benalman.com/news/2010/11/immediately-invoked-function-expression/).
+
+	(function (global, $) {
+	
+		// Encapsulated code
+		
+	}(window, jQuery, undefined));
+	
+Notice the passing in of some common objects (e.g. `window`, `jQuery` and `undefined`) that one might want to ensure are mapped to the right parameters. This is not required, but is suggested, especially if code will be placed in unknown environments.
 
 ### For Single (or Few) Instances
 	

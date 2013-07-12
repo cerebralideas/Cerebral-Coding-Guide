@@ -1,6 +1,6 @@
 # Front-End Style and Conventions Guide
 
-#### This Work-in-Progress is a Living Document and an Attempt to Represent the Baseline for Front-End Development
+#### This work-in-progress (WIP) is a living document and an attempt to represent the baseline for front-end development
 ##### (Contribute: fork, clone, branch, commit, push, pull request.)
 
 ## Preface
@@ -13,7 +13,7 @@ Link to this document as a statement of your project's commitment to code consis
 	### Current Author:
 	* Justin Lowery [@cerebralideas](http://twitter.com/cerebralideas), [github](https://github.com/cerebralideas)
 	
-	### Authors of idiomatic.js (which inspired the JavaScript Guide):
+	### Authors of idiomatic.js (which inspired this collection of guides):
 	* Rick Waldron [@rwaldron](http://twitter.com/rwaldron), [github](https://github.com/rwldrn)
 	* Mathias Bynens [@mathias](http://twitter.com/mathias), [github](https://github.com/mathiasbynens)
 	* Schalk Neethling [@ossreleasefeed](http://twitter.com/ossreleasefeed), [github](https://github.com/ossreleasefeed/)
@@ -39,7 +39,8 @@ Link to this document as a statement of your project's commitment to code consis
 		* [jsFiddle](http://jsfiddle.net/)
 		* [jshint](http://jshint.com/)
 		* [jslint](http://jslint.org/)
-		* [csslint](http://csslint.net)
+		* [csslint](http://csslint.net/)
+		* [Grunt.js](http://gruntjs.com/)
 	7. Collaborate and ask for code reviews, i.e. don't develop in a bubble!
 	8. Be awesome and write beautifully clean and inspiring code.
 

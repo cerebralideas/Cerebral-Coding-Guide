@@ -483,19 +483,19 @@ Whitespace can ruin diffs and make changesets impossible to read. Consider incor
 
 ### IIFE or the Immediately Invoked Function Expression
 
-Ben Alman, or [@cowboy](https://twitter.com/cowboy), is the [one who champions this pattern](http://benalman.com/news/2010/11/immediately-invoked-function-expression/).
+Ben Alman, or [@cowboy](https://twitter.com/cowboy), is the [one who championed this pattern](http://benalman.com/news/2010/11/immediately-invoked-function-expression/).
 
-	(function (global, $) {
+	(function (global, $, undefined) {
 	
 		// Encapsulated code
 		
-	}(window, jQuery, undefined));
+	}(window, jQuery));
 	
-Notice the passing in of some common objects (e.g. `window`, `jQuery` and `undefined`) that one might want to ensure are mapped to the right parameters. This is not required, but is suggested, especially if code will be placed in unknown environments.
+Notice the passing in of some common objects (e.g. `window`, `jQuery` and `undefined`) that one might want to ensure are mapped to the right parameters. This is not required, but is suggested, especially if code will be placed in unknown (hostile) environments.
 
 ### For Single (or Few) Instances
 	
-For the most basic object creation patterns, you have a couple of patterns at your disposal. We'll stick to the Singleton and Module pattern (for more patterns and far more details, see [Addy Osmani's Book of JS Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/)). They are quick to create, easy to understand and utilize the prototypal nature (objects inheriting from other objects) of JavaScript. The one downside is each object contains it's own properties and methods, so when multiple objects are used on a single page, memory and performance is sacrificed (for multiple instance patterns, see section 3.2 below).
+For the most basic object creation patterns, you have a couple of patterns at your disposal. We'll stick to the Singleton and Module pattern (for more patterns and far more details, see [Addy Osmani's Book of JS Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/)). They are quick to create, easy to understand. The one downside is each object contains it's own properties and methods, so when multiple objects are used on a single page, memory and performance *may be* sacrificed (for multiple instance patterns, see section 3.2 below).
 	
 1. **Singleton Method**
 		
@@ -530,155 +530,100 @@ For the most basic object creation patterns, you have a couple of patterns at yo
 		human.species; // Homo sapiens
 		human.makeFire; // writes 'rub sticks together' to console
 		
-	With this pattern, everything is passed by reference; good for functions, bad for values.
+	With this pattern, everything is passed by reference; good for functions, bad for values. The other weakness of this pattern is everything is exposed and nothing is private, which makes a poor API.
 
 1. **Module Method**
 		
-	This is the more recommended pattern for single (or few) object creation. It takes advantage of the closure pattern, allowing for private data and privileged functions. Because of all of this, it is slightly more complex.
+	This is the more recommended pattern. It takes advantage of closures, allowing for private data, which can act as a secure cache, and privileged methods. Because of all of this, it is slightly more complex, but provides a powerful API as one can see below:
 	
-		(function(global) {
-			var Module = (function() {
-	
-				var data = 'secret';
-	
+			var userModel = function (username, email) {
+
+				if (!users) {
+				
+					var users = [];
+				}
+				
 				return {
-					getData: function() {
-						// get the current value of `data`
-						return data;
+				
+					createUser: function (username, email) {
+					
+						var userInfo = {
+							id: users.length,
+							username: username,
+							email: email
+						};
+						
+						users.push(userInfo);
 					},
-					setData: function(value) {
-						// set the value of `data` and return it
-						return (data = value);
+					getAllUsers: function () {
+					
+						console.log(users);
+					},
+					getUser: function (id) {
+					
+						console.log(users[id]);
+					},
+					removeUser: function (id) {
+					
+						users[id] = null;
 					}
 				};
-			})();
-	
-			// Other things might happen here
-	
-			// expose our module to the global object
-			global.Module = Module;
-	
-		}(this));
-		
-	The weakness of this pattern is it's much harder to control what's passed by value and what is passed by reference. The module pattern doesn't use reference pointers for its methods, so each object has its own, which is not the most memory conservative pattern if there are many objects created on the same page.
-
-### For Multiple Instances
-	
-1. **Constructor/Prototype Pattern ("Classical" Inheritance)**
-		
-	JavaScript can not replicate the classical style inheritance like Java, C languages and others. As said above, JS has prototypal inheritance, so building classes in JS is not quite as straight-forward as many classical programmers would like. This makes JS loved and hated by many, but an object's ability to inherit from other objects using JS's more relaxed inheritance makes developing in JS very easy.
+			};
+				
+			var usersApi = userModel();
 			
-	But, if you are having to instantiate multiple objects onto a single page, using a more "classical" style can be much more beneficial. For this, we take advantage of the Constructor/Prototype pattern. It's much faster and more memory conservative. It takes a bit more advanced logic, has some bad side-effects if written poorly, but it can pay off in dividends if done right.
+			usersApi.createUser('Justin', 'justin@email.com');
+			usersApi.createUser('Megan', 'megan@email.com');
+			
+			usersApi.removeUser(0);
+			usersApi.getAllUsers(); // Logs: [null, {email: "megan@email.com", id: 2, username: "Megan"}]
+			usersApi.getUser(1); // Logs: {email: "megan@email.com", id: 2, username: "Megan"}
+		
+	The nice thing here is we can control what the user can and can't do with the API, by exposing the data and functions that only we want exposed. The weakness here is we still have methods attached to the instance objects and not to the parant or prototype object, which *can be* memory instansive if overdone.
+	
+	Demo can be seen here: [module pattern on JSbin](http://jsbin.com/AXOcano/1/edit).
+
+### For Many Highly Functional Instances
+	
+1. **OLOO (objects linked to other objects)**
+		
+	JavaScript can not replicate the classical style inheritance like Java, C languages and others, so don't try to do it. More than anything, stop trying to create "classes" in JS; they don't exist. Inheritence can be done in JS, it's just confusing if you come from a classical perspective. Since JS is prototypal in how it inherits, inheritence can be done in a multitude of ways.
+
+	OLOO was coined by [Kyle Simpson] and he champions the use of Object.create() to build [a certain pattern he calls OLOO](http://davidwalsh.name/javascript-objects-deconstruction). This removes the need for using constructors and prototypes and the confusion that normally ensues from the inheritence mess.
+	
+	With that being said, it should be very rare that you need to do inheritence. Many problems can be solved with the common module pattern see above. But, if you need to do it, heres the recommended pattern:
 			
 	Example of basic Constructor/Prototype pattern with side effect:
 
-		// Create constructor (Always capitalize the constructor function!)
-		function User(name){
-			this.name = name;
-		}
-		User.prototype = {
-		
-			constructor: User
+		var userModel = {
+  
+			init: function (name) {
+				this.name = name;
+			},
 			getName: function () {
 				return this.name;
 			}
 		};
-	
-		// Using the *new* keyword, everything's gravy
-		var newUser = new User('John Doe');
-		
-		newUser.getName(); // 'John Doe​​​'
-		
-		// But, what if we forget the *new* keyword?
-		var anotherUser = User('Jane Doe');
-		
-		anotherUser.getName(); // Error: Cannot call method 'getName' of undefined
-
-	To fix this issue and follow best practices for maintainability, we can use a slight variation of the above. To avoid the unfortunate side-effect of a missing `new` operator, we can test for it. If it wasn't used, we'll fix it, but write a warning to the console (this is important as we want to encourage proper coding practices). Let's also wrap the Constructor/Prototype in a self-invoking function to make into a nice neat package for readability.
-	
-		(function (global) {
-	 
-			// Now, create our Constructor function
-			function User(name) {
-				
-				// We first test to see if the newly created object
-				// is an instance of this Constructor. In other words,
-				// test if the *new* keyword was used.
-				if (!(this instanceof User)) {
 			
-					// If it isn't, then we write a warning out to
-					// the console …
-					console.log('Warning: Constructor function "User" should be used with the "new" operator.');
-			
-					// … and fix the issue
-					return new User(name);
-				}
-				
-				// assign the argument to the *this* keyword
-				this.name = name;
-				
-				return this;
-			};
-			
-			// Create our prototype as usual
-			User.prototype = {
-			
-				constructor: User,
-				getName: function () {
-					return this.name;
-				}
-			};
-			
-			global.User = User;
-	
-		}(this));
-	
-		// Create a *new* object inheriting from our class as usual
-		var newUser = new User('John Doe');
+		var studentModel = Object.create(userModel);
 		
-		console.log(newUser.getName()); // 'John Doe'
+		studentModel.homework = function (assignment) {
 		
-		// If the *new* keyword is not used, it works, but you get
-		// a warning written out to the console.
-		var anotherUser = User('Jane Doe');
-		
-		console.log(anotherUser.getName()); // 'Jane Doe'​ | 'Warning: Constructor function "User" should be used with the "new" operator.'
-		
-This pattern takes advantage of passing unique data by value, functions and global data by reference.
-
-1. **Resig's Class Maker**
-		
-	This is a slight variation to the above Constructor/Prototype pattern offered by John Resig. He goes into detail about it on his article, [Simple “Class” Instantiation](http://ejohn.org/blog/simple-class-instantiation/). He mentions how jQuery uses this pattern, and avoids the necessary `new` operator when creating new jQuery objects — `jQuery('div')` and `new jQuery('div')` are virtually the same, although slightly different under the hood.
-
-		// makeClass - By John Resig (MIT Licensed)
-		function makeClass(){
-		
-			return function(args){
-			
-				if ( this instanceof arguments.callee ) {
-				
-					if ( typeof this.init == "function" ) {
-					
-						this.init.apply( this, args.callee ? args : arguments );
-					}
-					
-				} else {
-				
-					return new arguments.callee( arguments );
-				}
-			};
-		}
-		
-		var User = makeClass();
-		
-		User.prototype.init = function(first, last){
-		
-			this.name = first + " " + last;
+			console.log(this.getName() + ' is working on ' + assignment);
 		};
 		
-		var user = User("John", "Resig");
+		var john = Object.create(studentModel);
+		var ed = Object.create(studentModel);
 		
-		user.name // => "John Resig" 
+		john.init('John Doe');
+		ed.init('Ed Smith');
+		
+		john.homework('biology lesson 1'); // Logs: "John Doe is working on biology lesson 1"
+		ed.homework('English lesson 5'); // Logs: "Ed Smith is working on English lesson 5"
+
+	As you can tell, this provides a solid inheritence pattern without too much confusion and mess. The only weakness to this is the need for an .init() method, but I think that's a lessor evil to many of the other patterns.
+	
+	The demo can be seen here: [OLOO pattern on JSbin](http://jsbin.com/efaKuLO/1/edit).
 
 ### Naming
 	

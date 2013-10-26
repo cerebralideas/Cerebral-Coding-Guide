@@ -593,8 +593,6 @@ For the most basic object creation patterns, you have a couple of patterns at yo
 	
 	With that being said, it should be very rare that you need to do inheritence. Many problems can be solved with the common module pattern see above. But, if you need to do it, heres the recommended pattern:
 			
-	Example of basic Constructor/Prototype pattern with side effect:
-
 		var userModel = {
   
 			init: function (name) {

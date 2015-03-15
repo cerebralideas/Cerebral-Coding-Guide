@@ -234,137 +234,7 @@ What **ABSOLUTELY MUST** be enforced is consistency. **Never mix quotes in the s
 ### End of Lines and Empty Lines
 	
 Whitespace can ruin diffs and make changesets impossible to read. Consider incorporating a pre-commit hook that removes end-of-line whitespace and blanks spaces on empty lines automatically or set your IDE to take care of it for you at save.
-	
-### Type Checking (Courtesy jQuery Core Style Guidelines)
-	
-1. Actual Types
 
-	String:
-
-		typeof variable === 'string'
-
-	Number:
-
-		typeof variable === 'number'
-
-	Boolean:
-
-		typeof variable === 'boolean'
-
-	Object:
-
-		typeof variable === 'object'
-
-	Array:
-
-		Array.isArray( arrayLikeObject )
-		(wherever possible)
-
-	Node:
-
-		elem.nodeType === 1
-
-	null:
-
-		variable === null
-
-	null or undefined:
-
-		variable == null
-
-	undefined:
-
-		Global Variables:
-
-			typeof variable === 'undefined'
-
-	Local Variables:
-
-		variable === undefined
-
-	Properties:
-
-		object.prop === undefined
-		object.hasOwnProperty( prop )
-		'prop' in object
-
-1. You can preempt issues by using smart coercion with unary + or - operators:
-
-		foo = +document.getElementById('foo-input').value;
-		//		^ unary + operator will convert its right side operand to a number
-	
-		typeof foo;	// 'number'
-	
-		if (foo === 1) {
-			importantTask();
-		}
-	
-		// `importantTask()` will be called
-
-
-1. Here are some common cases along with coercions:
-
-		var number = 1,
-			string = '1',
-			bool = false;
-
-		number; // 1
-
-		number + ''; // '1'
-
-		string; // '1'
-
-		+string; // 1
-
-		+string++; // 1
-
-		string; // 2
-
-		bool; // false
-
-		+bool; // 0
-
-		bool + ''; // 'false'
-
-1. Equality
-
-		var number = 1,
-			string = '1',
-			bool = true;
-
-		string === number; // false
-
-		string === number + ''; // true
-
-		+string === number; // true
-
-		bool === number; // false
-
-		+bool === number; // true
-
-		bool === string; // false
-
-		bool === !!string; // true
-
-1. Arrays
-
-		var array = [ 'a', 'b', 'c' ];
-
-		!!~array.indexOf('a'); // true
-
-		!!~array.indexOf('b'); // true
-
-		!!~array.indexOf('c'); // true
-
-		!!~array.indexOf('d'); // false
-		
-
-1. Note that the above should be considered "unnecessarily clever". Prefer the obvious approach of comparing the returned value of indexOf, like:
-
-		if ( array.indexOf( 'a' ) >= 0 ) {
-			// ...
-		}
-	
 ### Conditional Evaluation
 	
 	
@@ -688,7 +558,6 @@ You are not a human code compiler/compressor, so don't try to be one. Here are a
 		// Naming basic functions, objects, instances, etc
 
 		camelCase; function and var declarations
-		
 
 		// Naming constructors, prototypes, etc.
 
@@ -698,6 +567,10 @@ You are not a human code compiler/compressor, so don't try to be one. Here are a
 		// Naming regular expressions
 
 		rDesc = //;
+
+		// Naming a jQuery element
+	
+		$element;
 	
 	
 	From the Google Closure Library Style Guide
@@ -910,26 +783,31 @@ Do this instead:
 		
 ## Comments
 
-### Default commenting
+### Documentation commenting
 	
-Default style should be a the single line comment above the code that is subject with no space between the comment and the next line of code.
+Default style should be a the documentation comment above the code that is subject with no line-space between the comment and the next line of code. Please view the full JSDoc spec to learn more: http://usejsdoc.org/
 	
-	// This is a comment
-	function () …
+	/** This is a documentation comment;
+	 * Please follow JSDoc convention.
+	 * 
+	 * @param one {string}
+	 * @param two {boolean}
+	 */
+	function (one, two) …
 	 
 ### Commenting a Section
 	
-Multi-line comments should be used for separating unrelated blocks of code; text should be ALL-CAPS with a blank line between the comment and the next line of code.
+If things are hairy, split the file, but if you can't, and you want to section your code, use what I call a section comment; text should be ALL-CAPS with a blank line between the comment and the next line of code.
 		
 	/**********************************
-	* THIS STARTS A NEW SECTION *
+	 * THIS STARTS A NEW SECTION      *
 	***********************************/
 	
 	function () …
 	 
 ### End of Line Comments
 	
-These are allowed if very short (~5 words)!
+These are allowed if very short (~6 - 7 words)!
 
 	calc(h, w); // Adds height and width
 			
@@ -957,6 +835,7 @@ Carefully evaluate your need for dynamically loading content via AJAX. Completel
 ## JavaScript Resources
 
 * [http://es5.github.com/](http://es5.github.com/)
+* [http://usejsdoc.org/](http://usejsdoc.org/)
 * [Baseline For Front End Developers](http://rmurphey.com/blog/2012/04/12/a-baseline-for-front-end-developers/)
 * [Eloquent JavaScript](http://eloquentjavascript.net/)
 * [JavaScript, JavaScript](http://javascriptweblog.wordpress.com/)

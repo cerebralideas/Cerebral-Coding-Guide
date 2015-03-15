@@ -597,16 +597,12 @@ You are not a human code compiler/compressor, so don't try to be one. Here are a
 	
 	Example:
 	
-		/**********************************
-		* DOM SELECTOR THING FOR XYZ *
-		
-		* NOTE: Prefixing a name with the $ 
-		  communicates a jQuery object. *
-		***********************************/
-
+		/** Caching the list items from the user list
+		 * $ = jQuery element
+		 */
 		var $listItems = $('li');
 		
-		// JavaScript NodeLists aren't
+		// JavaScript NodeLists aren't prefixed
 		var listItems = document.getElementByTagName('li');
 		
 	This prevents people from wrapping jQuery objects with another jQuery object. Example:
